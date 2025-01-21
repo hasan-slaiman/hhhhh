@@ -1,13 +1,42 @@
-.scrol{
-    margin: 0;
-    width: 0;
-    height: 6px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: red;
-    z-index: 99;
-}
 body{
-    height: 5000px;
+    box-sizing: border-box;
+    margin: 0;
+ display: grid;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+ flex-wrap: wrap;
+ background-color: #ccc;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+span{
+    width: 145px;
+    background-color: rgb(7, 243, 212);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 1px;
+    height: 25px;
+    font-size: 20px;
+}
+nav{
+ width: 150px;
+ flex-wrap: wrap;
+display: flex;
+   
+
+}
+nav div{
+
+    width:45px;
+    height: 45px;
+    background-color: rgb(13, 230, 211);
+    margin: 2px;
+    color: white;
+    text-align: center;
+   font-size: 30px;
+}
+div:hover {
+    background-color: black;
+    color: #ccc;
 }
