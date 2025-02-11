@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UFT-8">
-        <title>حسن السليمان</title>
-        <!-- main templet css fils -->
-        <link rel="stylesheet" href="HASAN.css">
-        <script src="h.js"></script>   
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="HASAN.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="con">
+      <div class="text">
+        <h2>cruds</h2>
+        <p>proguct management system</p>
+      </div>
+      <div class="input">
+        <input type="text" placeholder="title" id="title">
+       <div class="price">
+        <input onkeyup="gettotal()" type="number" placeholder="price" id="price">
+        <input onkeyup="gettotal()" type="number" placeholder="texes" id="texes">
+        <input onkeyup="gettotal()" type="number" placeholder="ads" id="ads">
+        <input onkeyup="gettotal()" type="number" placeholder="discount" id="discount">
+       <small id="total"></small>
+       </div>
+       <input type="number" placeholder="count" id="count">
+       <input type="text" placeholder="category" id="category">
+       <button id="submit">clear</button>
+      </div>
+      <div class="output">
+        
+        <div class="searchblok">
+          <input onkeyup="keyup(this.value)" type="text" id="search" placeholder="search">
+          <div class="dd">
+          </div>
+          <div class="btn">
+            <button onclick="gets(this.id)" id="searchtitle">search By Title</button>
+            <button onclick="gets(this.id)" id="searchid">search By category</button>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>price</th>
+            <th>taxes</th>
+            <th>ads</th>
+            <th>discount</th>
+            <th>totle</th>
+            <th>category</th>
+            <th>update</th>
+            <th>delat</th>
+          </tr>
+          <tbody id="tbody">
+        
+          </tbody>
+        </table>
+
+      </div>
 
 
-    </head>
-    <body>
-<nav>
-    <span> X O</span>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-   <div></div>
-</nav>
-<script src="h.js"></script>   
+    </div>
+ 
+ 
 
-    </body>
+    <script src="h.js"></script>
+  </body>
 </html>

@@ -1,42 +1,88 @@
-body{
-    box-sizing: border-box;
+*{
     margin: 0;
- display: grid;
- justify-content: center;
- align-items: center;
- height: 100vh;
- flex-wrap: wrap;
- background-color: #ccc;
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-span{
-    width: 145px;
-    background-color: rgb(7, 243, 212);
-    text-align: center;
-    margin-bottom: 5px;
-    margin-left: 1px;
-    height: 25px;
-    font-size: 20px;
-}
-nav{
- width: 150px;
- flex-wrap: wrap;
-display: flex;
+   padding: 0;
+   box-sizing: border-box;
    
-
 }
-nav div{
-
-    width:45px;
-    height: 45px;
-    background-color: rgb(13, 230, 211);
-    margin: 2px;
-    color: white;
+body{
+    background :#222;
+    color:aliceblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.con{
+    width:80%;
+    margin: auto;
+}
+.text{
     text-align: center;
-   font-size: 30px;
+    text-transform: uppercase;
+    margin: 10px 0;
 }
-div:hover {
-    background-color: black;
-    color: #ccc;
+input{
+    width: 100%;
+    background-color: #111;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin: 4px 0;
+    padding: 6px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.8em;
 }
+input:focus{
+    transform: scale(1.1);
+    background-color: #000;
+}
+.price input{
+    width: 20%;
+}
+#total{
+    background-color: red;
+    padding: 4px;
+    border-radius: 5px;
+}
+#total::before{
+    content: "Total: ";
+
+}
+.dd{
+    margin: 5px 0;
+}
+button{
+    width: 100%;
+    height:30px;
+    border:none;
+    border-radius: 5px;
+    margin: 4px 0 ;
+    cursor:pointer;
+    background: #420a58;
+    color:#fff;
+    font-size: 1.2em;
+}
+.btn button:hover{
+    background: #280236;
+    letter-spacing: 1px;
+}
+button:hover{
+    background: #280236;
+}
+.btn{
+    display: flex;
+    justify-content: space-between;
+}
+.btn button{
+    width: 45%;
+}
+table{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+table th{
+    text-transform: uppercase;
+}
+th,td{
+    padding: 5px;
+}
+

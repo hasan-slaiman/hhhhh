@@ -1,90 +1,223 @@
-var hasan = [];
-var truen = "X"
-var hh = document.querySelectorAll("div")
-var aa = document.querySelector("span")
-function san(){
-    setInterval(function(){aa.innerHTML +='.'},1000);
-            setTimeout(function(){location.reload()},3000)
-}
-function winner(){
-    for(let a=0;a<9;a++){
-        hasan[a] = hh[a].innerHTML;
-        }
-        if(hasan[0] == hasan[1] && hasan[1] == hasan[2] && hasan[0] != ''){
-            hh[0].style.backgroundColor='black'
-            hh[1].style.backgroundColor='black'
-            hh[2].style.backgroundColor='black'
-            aa.innerHTML=`winner ${hasan[0]}`
-            san()
+let title = document.getElementById("title")
+let price = document.getElementById("price")
+let taxes = document.getElementById("texes")
+let ads = document.getElementById("ads")
+let discount = document.getElementById("discount")
+let category = document.getElementById("category")
+let count = document.getElementById("count")
+let submit = document.getElementById("submit")
+let total = document.getElementById("total")
+let search = document.getElementById("search")
 
-        }else if(hasan[3] == hasan[4] && hasan[4] == hasan[5] && hasan[3] != ''){
-            hh[3].style.backgroundColor='black'
-            hh[4].style.backgroundColor='black'
-            hh[5].style.backgroundColor='black'
-            aa.innerHTML=`winner ${hasan[3]}`
-            
-            san()
+let mod = 'creat';
+let t;
+let n = '!'
 
-        }else if(hasan[6] == hasan[7] && hasan[7] == hasan[8] && hasan[6] != ''){
-            hh[6].style.backgroundColor='black'
-            hh[7].style.backgroundColor='black'
-            hh[8].style.backgroundColor='black'
-            aa.innerHTML=`winner ${hasan[6]}`
-            san()
-        }else if(hasan[0] == hasan[3] && hasan[3] == hasan[6] && hasan[0] != ''){
-            hh[0].style.backgroundColor='black'
-            hh[3].style.backgroundColor='black'
-            hh[6].style.backgroundColor='black'
-            aa.innerHTML=`winner ${hasan[0]}`
-            san()
-            }else if(hasan[1] == hasan[4] && hasan[4] == hasan[7] && hasan[1] != ''){
-                hh[4].style.backgroundColor='black'
-                hh[1].style.backgroundColor='black'
-                hh[7].style.backgroundColor='black'
-                aa.innerHTML=`winner ${hasan[1]}`
-                san()
-            }else if(hasan[3] == hasan[5] && hasan[5] == hasan[8] && hasan[3] != ''){
-            hh[3].style.backgroundColor='black'
-            hh[5].style.backgroundColor='black'
-            hh[8].style.backgroundColor='black'
-            aa.innerHTML=`winner ${hasan[3]}`
-            san()
-            }else if(hasan[0] == hasan[4] && hasan[4] == hasan[8] && hasan[0] != ''){
-                hh[0].style.backgroundColor='black'
-                hh[4].style.backgroundColor='black'
-                hh[8].style.backgroundColor='black'
-                aa.innerHTML=`winner ${hasan[0]}`
-                san()
-            }else if(hasan[2] == hasan[4] && hasan[4] == hasan[6] && hasan[4] != ''){
-                hh[2].style.backgroundColor='black'
-                hh[4].style.backgroundColor='black'
-                hh[6].style.backgroundColor='black'
-                aa.innerHTML=`winner ${hasan[1]}`
-                san()
-            }
-           
-                    
-        
+// get totle
+function gettotal(){
+    if(price.value != ''){
+        let sum = (+ +price.value + +taxes.value + +ads.value) - (+discount.value);
+        total.innerHTML = sum;
+        total.style.background='green'
+    }else{
+        total.innerHTML = '';
+        total.style.background='red'
+
+
+    }
 }
-for(let i=0;i<10;i++){
+
+gettotal()
+let arr =[]
+if(localStorage.hasan != null){
+    arr = JSON.parse(localStorage.hasan)
+}
+submit.onclick = function(){
+    let usr = {
+        title:title.value.toLowerCase(),
+        price:price.value,
+        taxes:taxes.value,
+        ads:ads.value,
+        discount:discount.value,
+        total:total.innerHTML,
+        count:count.value,
+        category:category.value.toLowerCase(),
+    }
+//crunt
+if(title.value !=''&& price.value !=''&& category.value !=''&& arr.count <=100)
+    {if(mod === 'creat'){
+    if(count.value>1){
+        for(let i=0;i<count.value;i++){
+            arr.push(usr)
     
-    hh[i].onclick = function(){
-        if(truen ==="X" && hh[i].innerHTML == ''){
-     hh[i].textContent="X";
-     aa.innerHTML="O"
-      truen = "O";
-      
-}else if(truen === "O" && hh[i].innerHTML == ''){
-     hh[i].textContent="O";
-     aa.innerHTML="X";
-     truen ="X";
+            showDalat()
+
+        }
+    }else{
+            arr.push(usr)
+    
+        }
+
+}else{
+    arr[t] = usr;
+    mod = 'creat'
+    submit.innerHTML = 'Creat';
+    count.style.display='block';
+}
+clearData()
+}
+
+localStorage.setItem('hasan',JSON.stringify(arr));
+
+showDalat()
+}
+
+
+
+// clear input
+function clearData(){
+    title.value='';
+    price.value='';
+    taxes.value='';
+    ads.value='';
+    discount.value='';
+    total.innerHTML='';
+    count.value='';
+    category.value='';
+    
+}
+
+
+
+//read
+function showDalat(){
+    let table = '';
+    for(let a=0 ;a<arr.length;a++){
+        table += `
+         <tr>
+              <td>${a}</td>
+              <td>${arr[a].title}</td>
+              <td>${arr[a].price}</td>
+              <td>${arr[a].taxes}</td>
+              <td>${arr[a].ads}</td>
+              <td>${arr[a].discount}</td>
+              <td>${arr[a].count}</td>
+              <td>${arr[a].category}</td>
+              <td><button onclick='Up(${a})' id="update">update</button></td>
+              <td><button onclick='Del(${a})' id="Delate">Delate</button></td>
+            </tr>
+        `
+    }
+    document.getElementById("tbody").innerHTML = table;
+    if(arr.length>0){
+        document.querySelector(".dd").innerHTML =`<button onclick='All()'>Dalet All(${arr.length})</button>`
+    }else{
+        document.querySelector(".dd").innerHTML ='';
+    }
+    
+}
+showDalat();
+
+
+//dalet
+function Del(e){
+    arr.splice(e,1);
+    localStorage.arr;
+    showDalat()
 
 }
-winner()
+
+function All(){
+    localStorage.clear();
+    arr.splice(0)
+    showDalat()
 }
 
-} 
+
+//updat
+function Up(q){
+    title.value = arr[q].title;
+    price.value = arr[q].price;
+    taxes.value = arr[q].taxes;
+    ads.value = arr[q].ads;
+    discount.value = arr[q].discount;
+    category.value = arr[q].category;
+    count.style.display='none'
+    gettotal()
+    submit.innerHTML='Update';
+    mod = 'Update';
+    t=q;
+    scroll({
+        top:0,
+        behavior:"smooth",
+    })
+}
+
+//search 
+let ss = 'title';
+
+function gets(id){
+    if(id == 'searchtitle'){
+        ss = 'title'
+    }else{
+        ss = 'category'
+
+    }
+    search.placeholder = 'search By ' + ss;
+
+    search.focus();
+    search.value = '';
+    showDalat()
+
+}
+function keyup(o){
+    let table = '';
+    for(let a=0;a<arr.length;a++){
+
+    if(ss == 'title'){
+            if(arr[a].title.includes(o.toLowerCase()) || arr[a].category.includes(o.toString())){
+                  table += `
+         <tr>
+              <td>${a}</td>
+              <td>${arr[a].title}</td>
+              <td>${arr[a].price}</td>
+              <td>${arr[a].taxes}</td>
+              <td>${arr[a].ads}</td>
+              <td>${arr[a].discount}</td>
+              <td>${arr[a].count}</td>
+              <td>${arr[a].category}</td>
+              <td><button onclick='Up(${a})' id="update">update</button></td>
+              <td><button onclick='Del(${a})' id="Delate">Delate</button></td>
+            </tr>
+        `
+                
+            }
+            
+        }
+        else{
+            if(arr[a].category.includes(o.toLowerCase())){
+                  table += `
+         <tr>
+              <td>${a}</td>
+              <td>${arr[a].title}</td>
+              <td>${arr[a].price}</td>
+              <td>${arr[a].taxes}</td>
+              <td>${arr[a].ads}</td>
+              <td>${arr[a].discount}</td>
+              <td>${arr[a].count}</td>
+              <td>${arr[a].category}</td>
+              <td><button onclick='Up(${a})' id="update">update</button></td>
+              <td><button onclick='Del(${a})' id="Delate">Delate</button></td>
+            </tr>
+        `
+                
+            
+            }
+        }
 
 
+    }
 
+    document.getElementById("tbody").innerHTML = table;
 
+}
